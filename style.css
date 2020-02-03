@@ -42,9 +42,9 @@ body {
   padding: 5px 15px;
 }
 
-.container {
+#seats {
   margin-bottom: 30px;
-  perspective: 1000px;
+  perspective: 500px;
 }
 
 .seat {
