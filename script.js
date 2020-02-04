@@ -25,6 +25,24 @@ const updateSelectedCount = () => {
   total.innerText = selectedSeatsCount * ticketPrice;
 };
 
+// Get data from local storage and populate UI
+const populateUI = () => {
+  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+  const selectedFilmIndex = localStorage.getItem('selectedFilmIndex');
+
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach((seat, index) => {
+      if (selectedSeats.indexOf(index) > -1) {
+        seat.classList.add('selected');
+      }
+    });
+  }
+
+  if (selectedFilmIndex !== null) {
+    filmSelect.selectedIndex = selectedFilmIndex;
+  }
+};
+
 // Film select event
 filmSelect.addEventListener('change', e => {
   ticketPrice = +e.target.value;
@@ -44,3 +62,7 @@ container.addEventListener('click', e => {
     updateSelectedCount();
   }
 });
+
+// Initial setup
+populateUI();
+updateSelectedCount();
